@@ -13,11 +13,11 @@ void signal_handler(signal_code sig)
 	switch(sig)
 	{
 		case 600:
-		    printf("I am P5 -- Signal Received!! -- %d\nSending signal to the next process\n", sig);
-			_os_send(temp, 600); 
+		    printf("I am P5 -- Signal Received !! -- %d\nSending signal to the next process\n", sig); 
+			_os_send(temp, 600);
 		   break;
 		default:
-			printf("Incorrect Signal");
+			printf("Incorrect Signal - P5\n");
 	}
 	_os_rte();
 }
@@ -33,30 +33,28 @@ main()
 	int i;
 	struct MemoryModule *pidData;
 	
-	
-	type_lang = (MT_DATA << 8);
-	attr_rev = (MA_REENT << 8);
-	
 	if((errno=_os_intercept(signal_handler, _glob_data)) != 0)
 		exit(errno);
 
-	ticks = 1000;
-	_os_sleep(&ticks, &dummySig);
+	type_lang = (MT_DATA << 8);
+	attr_rev = (MA_REENT << 8);
 
-	
-   ticks = 1500;
-   	_os_sleep(&ticks, &dummySig);	
-   	ptrMemName = MEMORY_MODULE;
-   	if(errno = _os_link(&ptrMemName, (mh_com **) &mod_head, (void **)&pidData, &type_lang, &attr_rev) != 0)
-   	{
-   		fprintf(stderr, "%d: Couldn't link to data module!\n");
-   		_os_exit(errno);
-   	}
-   	
-   	printf("\n Next PID : %d\n", pidData->childrenPID[6]);
-	temp = 	pidData->childrenPID[6];
-   	_os_send(pidData->childrenPID[6], 600); 
-	_os_unlink(&mod_head);
    
-	
+ 
+   	ptrMemName = MEMORY_MODULE;
+	ticks = 300;
+	_os_sleep(&ticks, &dummySig);	
+		
+	if(errno = _os_link(&ptrMemName, (mh_com **) &mod_head, (void **)&pidData, &type_lang, &attr_rev) != 0)
+	{
+	   fprintf(stderr, "%d: Couldn't link to data module!\n");
+ 		_os_exit(errno);
+ 	}
+	temp = pidData->childrenPID[6];
+
+	ticks = 2500;
+	_os_sleep(&ticks, &dummySig);	
+
+   
+  	_os_unlink(&mod_head);
 }

@@ -14,7 +14,7 @@ void signal_handler(signal_code sig)
 		    printf("I am P4 -- Signal Received !!\n");
 		   break;
 		default:
-			printf("Incorrect Signal");
+			printf("Incorrect Signal - P4\n");
 	}
 	_os_rte();
 }
@@ -30,29 +30,14 @@ main()
 	int i;
 	struct MemoryModule *pidData;
 	
+	if((errno=_os_intercept(signal_handler, _glob_data)) != 0)
+		exit(errno);
+
 	
 	type_lang = (MT_DATA << 8);
 	attr_rev = (MA_REENT << 8);
-	
-	if((errno=_os_intercept(signal_handler, _glob_data)) != 0)
-			exit(errno);
 
-	ticks = 1000;
-	_os_sleep(&ticks, &dummySig);
 
-	
- 	/*  ticks = 1500;
-   	_os_sleep(&ticks, &dummySig);	
-   	ptrMemName = MEMORY_MODULE;
-   	if(errno = _os_link(&ptrMemName, (mh_com **) &mod_head, (void **)&pidData, &type_lang, &attr_rev) != 0)
-   	{
-   		fprintf(stderr, "%d: Couldn't link to data module!\n");
-   		_os_exit(errno);
-   	}
-   	
-   	printf("\n PID : %d", pidData->childrenPID[3]);
-   _os_send(pidData->childrenPID[3], 600);    
-	
-   	_os_unlink(&mod_head);*/
-											   
+  	ticks = 2000;
+	_os_sleep(&ticks, &dummySig); 											   
 }

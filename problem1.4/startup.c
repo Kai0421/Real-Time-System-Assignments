@@ -41,75 +41,66 @@ main(int argc, char * argv[], char **envp)
 	if (errno = (_os_exec(_os_fork, 0, 3, child_argv1[0], child_argv1, envp, 0,&child_pid[0], 0, 0) != 0))
 			printf("Error1 -- child 1\n");
 
-	printf("\n The child PID = %d\n",&child_pid[0]);
 	memPID->childrenPID[1] = child_pid[0];
    		
    
    
+
    	if (errno = (_os_exec(_os_fork, 0, 3, child_argv2[0], child_argv2, envp, 0,&child_pid[1], 0, 0) != 0))
 			printf("Error1\n");
 
-	printf("\n The child PID = %d\n", &child_pid[1]);
 	memPID->childrenPID[2] = child_pid[1];
 
 	
+
 		
-	if (errno = (_os_exec(_os_fork, 0, 3, child_argv3[0], child_argv3, envp, 0, &child_pid[2], 0, 0) != 0))
+  	if (errno = (_os_exec(_os_fork, 0, 3, child_argv3[0], child_argv3, envp, 0, &child_pid[2], 0, 0) != 0))
 			printf("Error1\n");
 
-	printf("\n The child PID = %d\n", &child_pid[2]);
-	memPID->childrenPID[3] = child_pid[2];
+   	memPID->childrenPID[3] = child_pid[2];		
 
-	if(errno = (_os_wait(&child_pid[2], &child_status) != 0))
-		printf("Error2\n");
-		
+
 	
 
-	if (errno = (_os_exec(_os_fork, 0, 3, child_argv4[0], child_argv4, envp, 0,&child_pid[3], 0, 0) != 0))
+ 	if (errno = (_os_exec(_os_fork, 0, 3, child_argv4[0], child_argv4, envp, 0,&child_pid[3], 0, 0) != 0))
 			printf("Error1\n");
 
-	printf("\n The child PID = %d\n", &child_pid[3]);
 	memPID->childrenPID[4] = child_pid[3];
 
-	if(errno = (_os_wait(&child_pid[3], &child_status) != 0))
-		printf("Error2\n");
-		
 
 
+   
 	if (errno = (_os_exec(_os_fork, 0, 3, child_argv5[0], child_argv5, envp, 0,&child_pid[4], 0, 0) != 0))
 			printf("Error1\n");
 
-	printf("\n The child PID = %d\n", &child_pid[4]);
-	memPID->childrenPID[5] = child_pid[4];
+   	memPID->childrenPID[5] = child_pid[4];
 
-	if(errno = (_os_wait(&child_pid[4], &child_status) != 0))
-		printf("Error2\n");
-		
 
-	if (errno = (_os_exec(_os_fork, 0, 3, child_argv6[0], child_argv6, envp, 0,&child_pid[5], 0, 0) != 0))
+
+	
+ 	if (errno = (_os_exec(_os_fork, 0, 3, child_argv6[0], child_argv6, envp, 0,&child_pid[5], 0, 0) != 0))
 			printf("Error1\n");
 
-	printf("\n The child PID = %d\n", &child_pid[5]);
-	memPID->childrenPID[6] = child_pid[5];
+	memPID->childrenPID[6] = child_pid[5];	   
 
 	   									
    																  
 	if(errno = (_os_wait(&child_pid[0], &child_status) != 0))
-		printf("Error2\n");
+		printf("Error -- P1 \n");
 
 	if(errno = (_os_wait(&child_pid[1], &child_status) != 0))
-		printf("Error2\n");
+		printf("Error -- P2 \n");
 	
-	if(errno = (_os_wait(&child_pid[0], &child_status) != 0))
-		printf("Error2\n");
+ 	if(errno = (_os_wait(&child_pid[2], &child_status) != 0))
+		printf("Error -- P3 \n");
 
-	if(errno = (_os_wait(&child_pid[1], &child_status) != 0))
-		printf("Error2\n");
+ 	if(errno = (_os_wait(&child_pid[3], &child_status) != 0))
+		printf("Error -- P4\n");
 
-	if(errno = (_os_wait(&child_pid[0], &child_status) != 0))
-		printf("Error2\n");
+	if(errno = (_os_wait(&child_pid[4], &child_status) != 0))
+		printf("Error -- P5");
 
-	if(errno = (_os_wait(&child_pid[1], &child_status) != 0))
-		printf("Error2\n");
-
+   	if(errno = (_os_wait(&child_pid[5], &child_status) != 0))	
+		printf("Error -- P6\n");
+																
 }
