@@ -1,0 +1,89 @@
+;Microware Hawk Project File (do not remove or modify this line)
+[ProjInit]
+ProjSetConfigFlags=0x04010940
+ProjCheckPath='H:\reatimesystem\problem1.5\\'
+
+[State]
+SysSetCwd='C:\Users\r00095982\Desktop'
+SrchSetFlags=0x0410600a
+FileSortMode=0x0
+StateWindowFrame=0,0,960,718,0x63097fca
+_StateWindow=86,53,1075,357,0x0010000c,'H:\reatimesystem\problem1.5\EnterValue.c',240,15,244,4,20,12,46,26,126,176,8,0,744,1,10,'',12,255,48,0,10,499,0,0,753,252,249,69,35,400,0,244,246,242,252,753,753,752,761,253,80,0,253,224,14,51,1,208,1
+_StateWindow=25,25,974,373,0x0010002c,'H:\reatimesystem\problem1.5\DataModule.h',240,15,244,4,20,12,46,26,126,176,8,14,438,0,10,'',12,255,48,0,10,499,0,0,753,252,249,6,2,400,0,244,246,242,252,753,753,752,761,253,80,0,253,224,14,1,1,208,3
+_StateWindow=502,12,974,373,0x0010002c,'H:\reatimesystem\problem1.5\InfoModule.h',240,15,244,4,20,12,46,26,126,176,8,0,595,0,10,'',12,255,48,0,10,499,0,0,753,252,249,10,1,400,0,244,246,242,252,753,753,752,761,253,80,0,253,224,14,10,1,208,5
+_StateWindow=133,45,971,373,0x0010000c,'H:\reatimesystem\problem1.5\CarDoor.c',240,15,244,4,20,12,46,26,126,176,8,114,325,0,10,'',12,255,48,0,10,499,0,0,753,252,249,116,34,400,0,244,246,242,252,753,753,752,761,253,80,0,253,224,14,103,1,208,2
+_StateWindow=82,182,946,422,0x0010002c,'H:\reatimesystem\problem1.5\DataModule.h',240,15,244,4,20,12,46,26,126,176,8,320,480,0,10,'',12,255,48,0,10,499,0,0,753,252,249,19,31,400,0,244,246,242,252,753,753,752,761,253,80,0,253,224,14,4,1,208,7
+_StateWindow=85,11,1050,354,0x0010002c,'H:\reatimesystem\problem1.5\GenerateAlarm.c',240,15,244,4,20,12,46,26,126,176,8,800,492,0,10,'',12,255,48,0,10,499,0,0,753,252,249,38,43,400,0,244,246,242,252,753,753,752,761,253,80,0,253,224,14,15,1,208,6
+_StateWindow=49,203,971,373,0x0010002c,'H:\reatimesystem\problem1.5\InfoModule.h',240,15,244,4,20,12,46,26,126,176,8,160,480,0,10,'',12,255,48,0,10,499,0,0,753,252,249,1,1,400,0,244,246,242,252,753,753,752,761,253,80,0,253,224,14,1,1,208,4
+_StateBuffer='H:\reatimesystem\problem1.5\EnterValue.c',0x0400048e,69,35,25,'5 9','',0x0,'',1,72
+_StateBuffer='H:\reatimesystem\problem1.5\DataModule.h',0x0400048e,6,2,25,'5 9','',0x0,'',1,72
+_StateBuffer='H:\reatimesystem\problem1.5\CarDoor.c',0x0400048e,116,34,25,'5 9','',0x0,'',1,72
+_StateBuffer='H:\reatimesystem\problem1.5\GenerateAlarm.c',0x0c00048e,38,43,25,'5 9','',0x0,'',1,72
+_StateBuffer='H:\reatimesystem\problem1.5\InfoModule.h',0x0400048e,22,1,25,'5 9','',0x0,'',1,72
+_StateHistory=FILELIST,'H:\reatimesystem\problem1.5\startup.c','H:\reatimesystem\problem1.5\DataModule.h','H:\reatimesystem\problem1.5\InfoModule.h','H:\reatimesystem\problem1.5\HandBrake.c','H:\reatimesystem\problem1.5\GenerateAlarm.c','c:\mwos\src\defs\rom\rom.h','c:\mwos\src\defs\stdio.h','c:\mwos\os9000\src\defs\module.h'
+_StateHistory=SEARCH,'memory_size'
+_StateHistory=XSYMBOL,'main','memory','INFO_MODULE','stderr','MA_REENT','MEMORY_MODULE','SEMA_EVENT','signal_handler','TRUE','FALSE'
+_StateHistory=EDITFILE,'H:\reatimesystem\workingproject2\process1.c','H:\reatimesystem\problem1.5\CarDoor.c','H:\reatimesystem\problem1.5\HandBrake.c','H:\reatimesystem\problem1.5\GenerateAlarm.c'
+
+[Editor]
+VCSProject=''
+VCSProjectPath=''
+VCSProjectLocalPath=''
+ClipboardSetTermStr='\r\n',0
+ClipboardEnableTermStr=1
+ClipboardSetSepStr='\r\n',0
+ClipboardEnableSepStr=1
+ScrapSetCount=1
+
+[Compiler]
+TagSetFile=''
+BrowseSetFile=''
+CompilerNewExt=.mak
+CompilerNewExt=.d
+CompilerNewExt=.a
+CompilerNewExt=.des
+CompilerNewExt=.cc
+CompilerNewExt=.bat
+CompilerNewExt=.txt
+CompilerNewExt=.cmd
+TagSetCmd='${HOME}${WTAGS} -oc -d -t"${TAGFILE}.tag" -p"${TAGFILE}.ptg"',0x8000060
+
+[VersionControl:PVCS]
+VCSSetCmd=VCS_CHECKIN_ID,'put -n -T@%Q -M@%Q %b%e',0x8000040
+VCSSetCmd=VCS_CHECKINLOCK_ID,'put -n -T@%Q -M@%Q -l %b%e',0x8000040
+VCSSetCmd=VCS_CHECKOUT_ID,'get -y %b%e',0x8000040
+VCSSetCmd=VCS_CHECKOUTLOCK_ID,'get -y -l %b%e',0x8000040
+VCSSetCmd=VCS_CHECKLOCK_ID,'vcs -y -l %b%e',0x8000040
+VCSSetCmd=VCS_CHECKUNLOCK_ID,'vcs -y -u %b%e',0x8000040
+VCSSetCmd=VCS_CHECKLABEL_ID,'vcs -y -v"${VCSLABEL}" %b%e',0x8000040
+VCSSetCmd=VCS_CHECKLOG_ID,'vlog %b%e',0x8000040
+VCSSetCmd=VCS_CHECKPROP_ID,'vlog -b %b%e',0x8000040
+VCSSetCmd=VCS_CHECKDIFF_ID,'vdiff -r %b%e',0x8000040
+VCSSetCmd=VCS_CHECKMENU_ID,'pvcsvmwn',0x8000000
+VCSSetCmd=VCS_ADD_ID,'vcs -i -t@%Q %b%e',0x8000040
+VCSSetCmd=VCS_REMOVE_ID,'del /f %b%{??v|___}e',0x8000040
+
+[Files]
+H:\reatimesystem\problem1.5\MovingCar.c
+H:\reatimesystem\problem1.5\SeatBelt.c
+H:\reatimesystem\problem1.5\Seat.c
+H:\reatimesystem\problem1.5\GenerateAlarm.c
+H:\reatimesystem\problem1.5\HandBrake.c
+H:\reatimesystem\problem1.5\DataModule.h
+H:\reatimesystem\problem1.5\CarDoor.c
+H:\reatimesystem\problem1.5\InfoModule.h
+C:\Mwos\SRC\DEFS\cglob.h
+C:\Mwos\OS9000\SRC\DEFS\alarm.h
+H:\reatimesystem\problem1.5\EnterValue.c
+C:\Mwos\OS9000\SRC\DEFS\alloc.h
+C:\Mwos\OS9000\80386\DEFS\reg386.h
+C:\Mwos\OS9000\SRC\DEFS\regs.h
+C:\Mwos\SRC\DEFS\signal.h
+C:\Mwos\OS9000\SRC\DEFS\moddir.h
+C:\Mwos\OS9000\SRC\DEFS\module.h
+C:\Mwos\OS9000\SRC\DEFS\types.h
+C:\Mwos\OS9000\SRC\DEFS\process.h
+C:\Mwos\SRC\DEFS\errno.h
+C:\Mwos\SRC\DEFS\ansi_c.h
+C:\Mwos\SRC\DEFS\stdio.h
+H:\reatimesystem\problem1.5\startup.c

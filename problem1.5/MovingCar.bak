@@ -1,0 +1,154 @@
+		/********************************************************************************/
+		/*	Ren Kai Tam -- R00095982													*/
+		/*	Problem 1.5	-- Self Driving Car												*/
+		/*	      																		*/
+		/*	      																		*/
+		/*	Moving Car																	*/
+		/********************************************************************************/
+
+
+#include <stdio.h>
+#include <signal.h>
+#include <errno.h>
+#include <module.h>
+#include <types.h>
+#include <cglob.h>
+#include <alarm.h>
+  
+#include "DataModule.h"
+#include "InfoModule.h"
+
+int count[] = {0, 0, 0};
+
+void signal_handler(signal_code sig)
+{
+	switch(sig)
+	{
+		case 1500:
+			printf("Moving Car -- Car Door is closed\n");
+			count[0]++;
+		  	break;
+
+		case 1600:
+			printf("Moving Car -- HandBrake is released\n");
+			count[1]++;
+			break;
+
+		case 1750:
+			printf("Moving Car -- Seat belts are fasten \n");
+			count[2]++;
+			break;
+
+	 	default:
+			printf("Moving Car -- Incorrect Signal\n");
+	}
+	_os_rte();
+}
+main()
+{	
+	signal_code dummySig, signal, wakeUpCall, sig;
+	u_int16 attr_rev, type_lang, mem_size;
+	mh_com mod_head;
+   	char *ptrMemName;
+   	char *ptrMemName2;
+	process_id nextTemp;
+	struct MemoryModule *pidMem;
+	struct CarInfo *carData;
+   	u_int32 sleepTime, timeToDelay, ticks;
+	alarm_id alarmID;	
+   	event_id ev_id;
+	u_int32 value;
+	int shouldCarMove = TRUE, counterLoop = 0;
+
+	
+	if((errno=_os_intercept(signal_handler, _glob_data)) != 0)
+			exit(errno);
+	
+	type_lang = (MT_DATA << 8);
+	attr_rev = (MA_REENT << 8);
+
+	ptrMemName = INFO_MODULE;
+	ptrMemName2 = MEMORY_MODULE;
+
+
+	if(errno = _os_link(&ptrMemName, (mh_com **) &mod_head, (void **)&carData, &type_lang, &attr_rev) != 0)
+	{
+		fprintf(stderr, "%d: Couldn't link to data module!\n");
+		exit(errno);
+	}
+
+	if(errno = _os_link(&ptrMemName2, (mh_com **) &mod_head, (void **)&pidMem, &type_lang, &attr_rev) != 0)
+	{
+		fprintf(stderr, "%d: Couldn't link to data module!\n");
+		exit(errno);
+	}
+
+	if((errno = _os_ev_link(SEMA_EVENT, &ev_id)) != 0)
+	{
+		printf("Error : Fail to link SEMA_EVENT\n");
+		exit(errno);
+	}
+
+
+	ticks = 200;
+	_os_sleep(&ticks, &dummySig);
+
+	timeToDelay = 10 * 1000;
+	wakeUpCall = 1;								   
+
+
+   if((errno=_os_alarm_cycle(&alarmID, wakeUpCall, timeToDelay)) != 0)
+	{
+		printf("Error creating alarm\n");
+		exit(errno);
+	}
+
+	printf("Moving Car Process Started\n");
+
+	
+	while(1)
+	{
+		printf("Getting event...\n");
+		shouldCarMove = TRUE;
+		if((errno = _os_ev_wait(ev_id, &value, &sig, 1, 1)) != 0)
+		{
+			printf("Moving car -- Waiting on Event error\n");
+		}
+
+		for	(counterLoop = 0; counterLoop < 3; counterLoop++)
+	   	{
+			printf("count[counterLoop] = %d - position %d\n", count[counterLoop], counterLoop);
+	   		if(count[counterLoop] <= 0)
+			 {
+			 	printf("if < 0 -- count[counterLoop] = %d - position %d\n", count[counterLoop], counterLoop);
+			 	shouldCarMove = FALSE;
+			 }									   
+		}
+
+		printf("should car move - %d\n", shouldCarMove);
+		if(shouldCarMove == TRUE)
+			_os_send(pidMem->childrenPID[3], 800);
+
+		sleepTime = 0;
+		_os_sleep(&sleepTime, &signal); 
+	   
+		if((errno = _os_ev_signal(ev_id, &value, 0)) != 0)
+		{
+			printf("Error : Signalling event error\n");
+			exit(errno);
+		}
+
+		if((errno = _os_ev_unlink(ev_id)) != 0)
+		{
+			printf("Error : Event Unlink error\n");
+			exit(0);
+		}
+		printf("Moving car - unlink event\n")	;
+	}
+   /*	printf("Car door is closed\n");*/
+ 	_os_unlink(&mod_head);
+}
+
+
+
+

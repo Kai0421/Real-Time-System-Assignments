@@ -1,0 +1,20 @@
+		/********************************************************************************/
+		/*	Ren Kai Tam -- R00095982													*/
+		/*	Problem 1.5 -- Self Driving Car												*/
+		/*	      																		*/
+		/*	      																		*/
+		/*	MemoryModule.h																*/
+		/********************************************************************************/
+
+/*
+	Memory Module tht contains Arrays of PIDs
+*/
+#include <types.h>
+#define NUMS_PIDS 7
+struct MemoryModule{
+	process_id childrenPID[NUMS_PIDS];
+};
+#define PID_ARRAY sizeof(struct MemoryModule)
+#define MEMORY_MODULE "PidMemory"
+#define SEMA_EVENT "SemaEvent"
+		
